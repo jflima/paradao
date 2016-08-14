@@ -8,7 +8,7 @@ from sensor.models import SensorValue
 from sensor.views import parseSensorsData
 from serializers import ParadaSerializer
 from serializers import SensorValueSerializer
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 # Create your views here.
@@ -24,8 +24,9 @@ def parada_detail(request, pk, format=None):
 @permission_classes((AllowAny,))
 def leitura_sensores_parada(request, codigo_parada, format=None):
     parseSensorsData()
-    valores = SensorValue.objects.filter(sensor__parada__codigo=codigo_parada)
-    valores.filter(timestamp__gte=(
-        datetime.datetime.now() - datetime.timedelta(seconds=10)))
-    serializer = SensorValueSerializer(valores, many=True)
+    valores = SensorValue.objects.filter(
+        sensor__parada__codigo=codigo_parada,
+        timestamp__gte=(datetime.now() - timedelta(seconds=5)))
+    serializer = SensorValueSerializer(valores,
+                                       context={'request': request}, many=True)
     return Response(serializer.data)

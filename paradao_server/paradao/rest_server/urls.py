@@ -31,4 +31,5 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls',
                                namespace='rest_framework')),
     url(r'^parada/(?P<pk>[0-9]+)$', views.parada_detail),
+    url(r'^parada/(?P<codigo_parada>[0-9]+)/sensores$', views.leitura_sensores_parada),
 ]
