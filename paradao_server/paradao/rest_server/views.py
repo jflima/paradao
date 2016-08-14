@@ -12,7 +12,7 @@ from serializers import SensorSerializer
 @api_view(['GET'])
 @permission_classes((AllowAny,))
 def parada_detail(request, pk, format=None):
-    parada = Parada.objects.filter(pk=pk).get()
+    parada = Parada.objects.filter(codigo=pk).get()
     serializer = ParadaSerializer(parada, many=False)
     return Response(serializer.data)
 
