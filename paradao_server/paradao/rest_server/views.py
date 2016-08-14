@@ -3,9 +3,12 @@ from rest_framework.decorators import permission_classes
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from models import Parada
-from sensor.models import Sensor
+# from sensor.models import Sensor
+from sensor.models import SensorValue
+from sensor.views import parseSensorsData
 from serializers import ParadaSerializer
-from serializers import SensorSerializer
+from serializers import SensorValueSerializer
+from datetime import datetime
 
 
 # Create your views here.
@@ -20,6 +23,9 @@ def parada_detail(request, pk, format=None):
 @api_view(['GET'])
 @permission_classes((AllowAny,))
 def leitura_sensores_parada(request, codigo_parada, format=None):
-    sensores = Sensor.objects.filter(parada__codigo=codigo_parada)
-    serializer = ParadaSerializer(sensores, many=True)
+    parseSensorsData()
+    valores = SensorValue.objects.filter(sensor__parada__codigo=codigo_parada)
+    valores.filter(timestamp__gte=(
+        datetime.datetime.now() - datetime.timedelta(seconds=10)))
+    serializer = SensorValueSerializer(valores, many=True)
     return Response(serializer.data)
