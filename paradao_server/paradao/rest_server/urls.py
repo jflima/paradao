@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from models import Parada
-from models import Sensor
+from sensor.models import Sensor
 from rest_framework import routers, serializers, viewsets
 
 
