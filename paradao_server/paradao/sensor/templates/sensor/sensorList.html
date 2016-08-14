@@ -4,14 +4,9 @@
    </head>
    <body>
       {% if sensorList %}
-      <h1> #{{sensorsQtt}} Sensores:</h1>
-      <ul>
-         {% for sensor in sensorList %}
-	 <li><a href="#">{{sensor}}</a></li>
-	 {% endfor %}
-      </ul>
+	<p>Sensor's data updated.</p>
       {% else %}
-         <p>No Sensors data available.</p>
+         <p>No Sensor's data available.</p>
       {% endif %}
    </body>
 </html>

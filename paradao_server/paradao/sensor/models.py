@@ -27,6 +27,6 @@ class SensorValue(models.Model):
     valor  = models.FloatField(default=0.0, help_text="Valor do sensor")
     timestamp = models.DateTimeField(auto_now_add=True)
 
-#    def __str__(self):
-#        return "[Sensor:%d]@[time %s]=%d"%(self.sensor.codigo, str(self).timestamp, self.valor)
+    def __str__(self):
+        return "[Sensor:%d]@[time %s]=%d"%(self.sensor.codigo, str(self.timestamp), self.valor)
 
