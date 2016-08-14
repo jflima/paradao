@@ -14,3 +14,13 @@ class Parada(models.Model):
 
     def __str__(self):
         return "Parada[%s]: latitude=%s longitude=%s"%(self.codigo, self.latitude, self.longitude)
+
+
+class StatusParada(models.Model):
+    parada = models.ForeignKey(Parada)
+    valor_temperatura = models.FloatField(default=0.0)
+    temperatura = models.IntegerField(default=0)
+    umidade = models.IntegerField(default=0)
+    luminosidade = models.IntegerField(default=0)
+    presenca = models.IntegerField(default=0)
+    conceito_parada = models.IntegerField(default=0)
