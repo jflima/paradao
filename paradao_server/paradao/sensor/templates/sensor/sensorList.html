@@ -1,0 +1,17 @@
+<html>
+   <head>
+      <title>Parad&atilde;o: Lista de Sensores</title>
+   </head>
+   <body>
+      {% if sensorList %}
+      <h1> #{{sensorsQtt}} Sensores:</h1>
+      <ul>
+         {% for sensor in sensorList %}
+	 <li><a href="#">{{sensor}}</a></li>
+	 {% endfor %}
+      </ul>
+      {% else %}
+         <p>No Sensors data available.</p>
+      {% endif %}
+   </body>
+</html>
