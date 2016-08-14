@@ -11,4 +11,3 @@ class Parada(models.Model):
     cidade = models.TextField(default='', help_text="Cidade da parada")
     latitude = models.TextField(default='', help_text="Latitude da parada")
     longitude = models.TextField(default='', help_text="Longitude da parada")
-
