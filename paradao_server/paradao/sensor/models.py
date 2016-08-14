@@ -8,7 +8,7 @@ from rest_server.models import Parada
 class Sensor(models.Model):
     parada = models.ForeignKey(Parada)
     codigo = models.IntegerField(primary_key=True, default=0, help_text="Codigo do sensor")
-    porta = models.IntegerField(default=0, help_text="Porta do sensor")
+    porta = models.TextField(default=0, help_text="Porta do sensor")
     nome = models.TextField(default='', help_text="Nome do sensor")
     descricao = models.TextField(default='', help_text="Descricao do sensor")
     localizacao = models.TextField(default='',
@@ -19,7 +19,7 @@ class Sensor(models.Model):
     maximo = models.IntegerField(default=0, help_text="Maximo do sensor")
 
     def __str__(self):
-        return "Codigo:%d,Nome: %s, Tipo: %s, Porta:%d, Localizacao:%s" % (self.codigo, self.nome, self.tipo, self.porta, self.localizacao)
+        return "Codigo:%d,Nome: %s, Tipo: %s, Porta:%s, Localizacao:%s" % (self.codigo, self.nome, self.tipo, self.porta, self.localizacao)
 
 
 class SensorValue(models.Model):
