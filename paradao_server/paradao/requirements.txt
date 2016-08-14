@@ -1,0 +1,7 @@
+Django==1.9.5
+argparse==1.2.1
+dj-database-url==0.4.1
+djangorestframework==3.3.3
+gunicorn==19.4.5
+whitenoise==3.0
+wsgiref==0.1.2
