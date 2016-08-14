@@ -1,24 +1,10 @@
 from django.conf.urls import url, include
 from models import Parada
 from sensor.models import Sensor
-from rest_framework import routers, serializers, viewsets
-
-
-# Serializers define the API representation.
-class ParadaSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Parada
-        fields = ('codigo', 'logradouro', 'bairro',
-                  'cidade', 'latitude', 'longitude')
-
-
-class SensorSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Sensor
-        fields = ('codigo', 'porta', 'nome',
-                  'descricao', 'localizacao', 'tipo',
-                  'data_sheet', 'minimo', 'maximo', 'valor',
-                  'parada')
+from rest_framework import routers, viewsets
+from serializers import ParadaSerializer
+from serializers import SensorSerializer
+from . import views
 
 
 # ViewSets define the view behavior.
@@ -43,5 +29,6 @@ router.register(r'sensor', SensorViewSet)
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls',
-                               namespace='rest_framework'))
+                               namespace='rest_framework')),
+    url(r'^parada/(?P<pk>[0-9]+)$', views.parada_detail),
 ]

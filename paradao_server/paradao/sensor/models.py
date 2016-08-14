@@ -17,9 +17,10 @@ class Sensor(models.Model):
     data_sheet = models.TextField(default='', help_text="Data sheet do sensor")
     minimo = models.IntegerField(default=0, help_text="Minimo do sensor")
     maximo = models.IntegerField(default=0, help_text="Maximo do sensor")
-    
+
     def __str__(self):
-        return "Codigo:%d,Nome: %s, Tipo: %s, Porta:%d, Localizacao:%s"%(self.codigo, self.nome, self.tipo, self.porta, self.localizacao)
+        return "Codigo:%d,Nome: %s, Tipo: %s, Porta:%d, Localizacao:%s" % (self.codigo, self.nome, self.tipo, self.porta, self.localizacao)
+
 
 class SensorValue(models.Model):
     sensor = models.ForeignKey(Sensor)
